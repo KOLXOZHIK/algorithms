@@ -13,7 +13,7 @@ pair<int,int> find_two_sum(const vector<int>& v, int target_val)
 /**
  * @param v - input vector of integer values
  * @param target_val - input target value for the sum of two values
- * @return - a pair of indices in the input vector v which add up to the some
+ * @return - a pair of indices in the input vector v which add up to the target_value
 */
 {
     pair<int,int> res = make_pair(-1,-1);
@@ -25,7 +25,7 @@ pair<int,int> find_two_sum(const vector<int>& v, int target_val)
     }
     for(int i =0; i < n; i++)
     {
-       if(umap.find(target_val-v[i]) != umap.end()) 
+       if(umap.find(target_val-v[i]) != umap.end() && umap[target_val-v[i]] != i) 
        {
 	   res.first = i;
 	   res.second = umap[target_val-v[i]];
@@ -38,7 +38,7 @@ pair<int,int> find_two_sum(const vector<int>& v, int target_val)
 int main(int argc, char** argv)
 {
     vector<int> a{2,7,11,15};
-    int target = 9;
+    int target = 18;
     pair<int,int> p = find_two_sum(a, target);
     if(p.first <0)
        cout << "No two elements add up to target value\n";
